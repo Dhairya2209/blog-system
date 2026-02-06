@@ -7,20 +7,27 @@ function BlogList() {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  const LIMIT = 3; // blogs per page
+  const LIMIT = 3; 
 
   const fetchBlogs = async () => {
-    setLoading(true);
-    try {
-      const res = await API.get(
-        `/posts?search=${search}&page=${page}&limit=${LIMIT}`
-      );
-      setBlogs(res.data);
-    } catch (err) {
-      console.error(err);
-    }
-    setLoading(false);
-  };
+  setLoading(true);
+  try {
+    const res = await API.get(
+      `/posts?search=${search}&page=${page}&limit=${LIMIT}`
+    );
+
+    console.log("API RESPONSE:", res.data); 
+
+    setBlogs(res.data); 
+  } catch (err) {
+    console.error(
+      "BLOG FETCH ERROR:",
+      err.response?.data || err.message
+    );
+  }
+  setLoading(false);
+};
+
 
   useEffect(() => {
     fetchBlogs();
@@ -33,7 +40,6 @@ function BlogList() {
 
   return (
     <div>
-      {/* 🔍 Search Bar */}
       <div className="search">
         <input
           type="text"
