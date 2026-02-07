@@ -1,4 +1,3 @@
--
 # 📝 Blog / Article System 
 
 A simple Blog / Article platform built using **Node.js, Express, MongoDB**, with a **basic React frontend** 
